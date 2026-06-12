@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GlowCare Register</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .register-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 450px;
+            padding: 50px 40px;
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .brand {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .brand h1 {
+            font-size: 32px;
+            color: #ff7f50;
+            margin-bottom: 10px;
+        }
+
+        .brand p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            color: #333;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        input {
+            width: 100%;
+            padding: 11px;
+            border: 2px solid #eee;
+            border-radius: 10px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #ff7f50;
+        }
+
+        input.error {
+            border-color: #ff4d4d;
+        }
+
+        .error-message {
+            color: #ff4d4d;
+            font-size: 12px;
+            margin-top: 4px;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        .password-requirements {
+            background: #f8f9fb;
+            padding: 12px;
+            border-radius: 10px;
+            margin-top: 8px;
+            font-size: 12px;
+            color: #666;
+        }
+
+        .requirement {
+            margin: 4px 0;
+        }
+
+        .requirement.met {
+            color: #28a745;
+        }
+
+        .requirement:before {
+            content: "✗ ";
+            color: #ff4d4d;
+            font-weight: bold;
+        }
+
+        .requirement.met:before {
+            content: "✓ ";
+            color: #28a745;
+        }
+
+        .register-btn {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: opacity 0.3s;
+        }
+
+        .register-btn:hover {
+            opacity: 0.9;
+        }
+
+        .register-btn:active {
+            opacity: 0.8;
+        }
+
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 12px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: none;
+            text-align: center;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        .form-footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .form-footer a {
+            color: #ff7f50;
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .form-footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media(max-width:768px) {
+            .register-container {
+                max-width: 90%;
+                padding: 40px 30px;
+            }
+
+            .brand h1 {
+                font-size: 28px;
+            }
+
+            .brand p {
+                font-size: 13px;
+            }
+
+            .form-group {
+                margin-bottom: 15px;
+            }
+
+            label {
+                font-size: 13px;
+                margin-bottom: 5px;
+            }
+
+            input {
+                padding: 10px;
+                font-size: 13px;
+            }
+
+            .password-requirements {
+                padding: 10px;
+                font-size: 11px;
+            }
+
+            .register-btn {
+                padding: 11px;
+                font-size: 15px;
+                margin-top: 15px;
+            }
+
+            .form-footer {
+                font-size: 13px;
+            }
+        }
+
+        @media(max-width:480px) {
+            body {
+                padding: 15px;
+            }
+
+            .register-container {
+                max-width: 100%;
+                padding: 30px 20px;
+                border-radius: 15px;
+            }
+
+            .brand h1 {
+                font-size: 24px;
+                margin-bottom: 8px;
+            }
+
+            .brand p {
+                font-size: 12px;
+            }
+
+            .form-group {
+                margin-bottom: 12px;
+            }
+
+            label {
+                font-size: 12px;
+                margin-bottom: 4px;
+            }
+
+            input {
+                padding: 9px;
+                font-size: 14px;
+                border-radius: 8px;
+            }
+
+            .error-message {
+                font-size: 11px;
+                margin-top: 3px;
+            }
+
+            .password-requirements {
+                padding: 8px;
+                font-size: 10px;
+                margin-top: 6px;
+            }
+
+            .requirement {
+                margin: 3px 0;
+            }
+
+            .register-btn {
+                padding: 10px;
+                font-size: 14px;
+                margin-top: 12px;
+                border-radius: 8px;
+            }
+
+            .form-footer {
+                font-size: 12px;
+                margin-top: 15px;
+            }
+        }
+
+        @media(max-width:360px) {
+            .register-container {
+                padding: 20px 15px;
+            }
+
+            .brand h1 {
+                font-size: 20px;
+            }
+
+            .form-group {
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="register-container">
+        <div class="brand">
+            <h1>✨ GlowCare</h1>
+            <p>Create Your Account</p>
+        </div>
+
+        <div class="success-message" id="successMessage"></div>
+
+        <form id="registerForm" onsubmit="handleRegister(event)">
+            <div class="form-group">
+                <label for="fullName">Full Name</label>
+                <input type="text" id="fullName" placeholder="Enter your full name" required>
+                <div class="error-message" id="fullNameError"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" placeholder="Enter your email" required>
+                <div class="error-message" id="emailError"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Create a password" required>
+                <div class="error-message" id="passwordError"></div>
+                <div class="password-requirements">
+                    <div class="requirement" id="req-length">At least 6 characters</div>
+                    <div class="requirement" id="req-special">At least 1 special character</div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password</label>
+                <input type="password" id="confirmPassword" placeholder="Confirm your password" required>
+                <div class="error-message" id="confirmPasswordError"></div>
+            </div>
+
+            <button type="submit" class="register-btn">Create Account</button>
+        </form>
+
+        <div class="form-footer">
+            <p>Already have an account? <a href="index.html">Login here</a></p>
+        </div>
+    </div>
+
+    <script src="auth.js"></script>
+    <script>
+        // Real-time password validation
+        document.getElementById('password').addEventListener('input', function() {
+            const password = this.value;
+            
+            // Check length
+            const lengthReq = document.getElementById('req-length');
+            if (password.length >= 6) {
+                lengthReq.classList.add('met');
+            } else {
+                lengthReq.classList.remove('met');
+            }
+
+            // Check special character
+            const specialReq = document.getElementById('req-special');
+            const hasSpecial = /[!@#$%^&*()_+\-=\[\]{};:'",.<>?/\\|`~]/.test(password);
+            if (hasSpecial) {
+                specialReq.classList.add('met');
+            } else {
+                specialReq.classList.remove('met');
+            }
+
+            // Remove error styling
+            this.classList.remove('error');
+            document.getElementById('passwordError').classList.remove('show');
+        });
+
+        // Remove error styling on input
+        ['fullName', 'email', 'confirmPassword'].forEach(id => {
+            document.getElementById(id).addEventListener('input', function() {
+                this.classList.remove('error');
+                document.getElementById(id + 'Error').classList.remove('show');
+            });
+        });
+
+        function handleRegister(event) {
+            event.preventDefault();
+
+            // Clear previous errors
+            ['fullName', 'email', 'password', 'confirmPassword'].forEach(id => {
+                document.getElementById(id + 'Error').classList.remove('show');
+                document.getElementById(id).classList.remove('error');
+            });
+
+            const fullName = document.getElementById('fullName').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            let hasError = false;
+
+            // Validate full name
+            if (!fullName) {
+                showError('fullNameError', 'Full name is required');
+                hasError = true;
+            } else if (fullName.length < 2) {
+                showError('fullNameError', 'Full name must be at least 2 characters');
+                hasError = true;
+            }
+
+            // Validate email
+            if (!email) {
+                showError('emailError', 'Email is required');
+                hasError = true;
+            } else if (!validateEmail(email)) {
+                showError('emailError', 'Invalid email format');
+                hasError = true;
+            }
+
+            // Validate password
+            if (!password) {
+                showError('passwordError', 'Password is required');
+                hasError = true;
+            } else if (password.length < 6) {
+                showError('passwordError', 'Password must be at least 6 characters');
+                hasError = true;
+            } else if (!/[!@#$%^&*()_+\-=\[\]{};:'",.<>?/\\|`~]/.test(password)) {
+                showError('passwordError', 'Password must include at least 1 special character');
+                hasError = true;
+            }
+
+            // Validate confirm password
+            if (!confirmPassword) {
+                showError('confirmPasswordError', 'Please confirm your password');
+                hasError = true;
+            } else if (password !== confirmPassword) {
+                showError('confirmPasswordError', 'Passwords do not match');
+                hasError = true;
+            }
+
+            if (hasError) return;
+
+            // Attempt registration
+            const result = registerUser(email, password, confirmPassword, fullName);
+
+            if (result.success) {
+                document.getElementById('successMessage').textContent = result.message;
+                document.getElementById('successMessage').classList.add('show');
+                
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 1500);
+            } else {
+                alert(result.message);
+            }
+        }
+
+        function showError(elementId, message) {
+            const errorEl = document.getElementById(elementId);
+            errorEl.textContent = message;
+            errorEl.classList.add('show');
+
+            const inputId = elementId.replace('Error', '');
+            const input = document.getElementById(inputId);
+            if (input) input.classList.add('error');
+        }
+    </script>
+
+</body>
+
+</html>

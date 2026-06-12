@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GlowCare Checkout</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: #f8f9fb;
+            padding: 40px;
+        }
+
+        .checkout-container {
+            max-width: 1200px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+
+        .checkout-left,
+        .checkout-right {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, .08);
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        .section {
+            margin-bottom: 35px;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .input-group input,
+        .input-group textarea,
+        .input-group select {
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            transition: border-color 0.3s;
+        }
+
+        .input-group input:focus,
+        .input-group textarea:focus,
+        .input-group select:focus {
+            outline: none;
+            border-color: #ff7f50;
+        }
+
+        .input-group input.error,
+        .input-group textarea.error,
+        .input-group select.error {
+            border-color: #ff4d4d;
+        }
+
+        .error-text {
+            color: #ff4d4d;
+            font-size: 12px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .error-text.show {
+            display: block;
+        }
+
+        .auth-header {
+            background: #f0f9ff;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 500;
+            color: #0066cc;
+        }
+
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .summary-line {
+            display: flex;
+            justify-content: space-between;
+            margin: 12px 0;
+        }
+
+        .total {
+            font-size: 22px;
+            font-weight: 700;
+            color: #ff7f50;
+        }
+
+        .place-order {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            background: #ff7f50;
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: opacity 0.3s;
+        }
+
+        .place-order:hover {
+            opacity: .9;
+        }
+
+        .badges {
+            margin-top: 20px;
+        }
+
+        .badges p {
+            margin-bottom: 8px;
+            color: #666;
+        }
+
+        .success {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, .7);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .success-box {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            width: 450px;
+        }
+
+        .success-box h1 {
+            color: #28a745;
+            margin-bottom: 15px;
+        }
+
+        .success-box button {
+            margin-top: 20px;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 30px;
+            background: #ff7f50;
+            color: white;
+            cursor: pointer;
+        }
+
+        @media(max-width:1024px) {
+            .checkout-container {
+                gap: 20px;
+            }
+
+            .checkout-left,
+            .checkout-right {
+                padding: 25px;
+            }
+        }
+
+        @media(max-width:900px) {
+
+            .checkout-container {
+                grid-template-columns: 1fr;
+            }
+
+            body {
+                padding: 20px;
+            }
+
+        }
+
+        @media(max-width:768px) {
+            body {
+                padding: 15px;
+            }
+
+            .checkout-container {
+                gap: 15px;
+            }
+
+            .checkout-left,
+            .checkout-right {
+                padding: 20px;
+                border-radius: 15px;
+            }
+
+            h2 {
+                font-size: 18px;
+                margin-bottom: 15px;
+            }
+
+            .section {
+                margin-bottom: 25px;
+            }
+
+            .input-group input,
+            .input-group textarea,
+            .input-group select {
+                padding: 10px;
+                font-size: 14px;
+            }
+
+            .success-box {
+                width: 90%;
+                max-width: 400px;
+                padding: 30px;
+            }
+
+            .success-box h1 {
+                font-size: 24px;
+            }
+
+            .submit-btn {
+                width: 100%;
+            }
+        }
+
+        @media(max-width:480px) {
+            body {
+                padding: 10px;
+            }
+
+            .checkout-container {
+                gap: 10px;
+            }
+
+            .checkout-left,
+            .checkout-right {
+                padding: 15px;
+                border-radius: 12px;
+            }
+
+            h2 {
+                font-size: 16px;
+                margin-bottom: 12px;
+            }
+
+            .section {
+                margin-bottom: 20px;
+            }
+
+            .input-group {
+                margin-bottom: 12px;
+            }
+
+            .input-group label {
+                font-size: 13px;
+                margin-bottom: 6px;
+            }
+
+            .input-group input,
+            .input-group textarea,
+            .input-group select {
+                padding: 8px;
+                font-size: 13px;
+                border-radius: 8px;
+            }
+
+            .auth-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .auth-header button {
+                margin-top: 10px;
+                margin-left: 0 !important;
+            }
+
+            .success-box {
+                width: 95%;
+                max-width: 350px;
+                padding: 20px;
+            }
+
+            .success-box h1 {
+                font-size: 20px;
+            }
+
+            .success-box p {
+                font-size: 13px;
+            }
+
+            .success-box button {
+                margin-top: 15px;
+                padding: 10px 20px;
+                font-size: 12px;
+            }
+
+            .badges {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            .badge {
+                padding: 12px;
+            }
+
+            .badge h3 {
+                font-size: 14px;
+            }
+
+            .badge p {
+                font-size: 12px;
+                margin-bottom: 6px;
+            }
+        }
+
+        @media(max-width:360px) {
+            body {
+                padding: 8px;
+            }
+
+            .checkout-left,
+            .checkout-right {
+                padding: 12px;
+            }
+
+            h2 {
+                font-size: 15px;
+            }
+
+            .success-box {
+                width: 98%;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="checkout-container">
+
+        <div class="checkout-left">
+
+            <div class="auth-header">
+                <span id="userGreeting"></span>
+                <button id="logoutBtn" style="display:none; padding: 8px 15px; background: #ff7f50; color: white; border: none; border-radius: 20px; cursor: pointer; margin-left: 20px;">Logout</button>
+            </div>
+
+            <div class="section">
+
+                <h2>Customer Information</h2>
+
+                <div class="input-group">
+                    <label>Full Name *</label>
+                    <input type="text" id="fullName" placeholder="Enter your full name">
+                    <div class="error-text" id="fullNameError"></div>
+                </div>
+
+                <div class="input-group">
+                    <label>Email *</label>
+                    <input type="email" id="email" placeholder="Enter your email">
+                    <div class="error-text" id="emailError"></div>
+                </div>
+
+                <div class="input-group">
+                    <label>Phone Number *</label>
+                    <input type="text" id="phone" placeholder="Enter your phone number">
+                    <div class="error-text" id="phoneError"></div>
+                </div>
+
+            </div>
+
+            <div class="section">
+
+                <h2>Shipping Address</h2>
+
+                <div class="input-group">
+                    <label>Country *</label>
+
+                    <select id="country" onchange="updateTax()">
+                        <option value="">Select a country</option>
+                        <option value="Cambodia">Cambodia (Tax: 0%)</option>
+                        <option value="Thailand">Thailand (Tax: 7%)</option>
+                        <option value="Vietnam">Vietnam (Tax: 5%)</option>
+                    </select>
+                    <div class="error-text" id="countryError"></div>
+
+                </div>
+
+                <div class="input-group">
+                    <label>City *</label>
+                    <input type="text" id="city" placeholder="Phnom Penh">
+                    <div class="error-text" id="cityError"></div>
+                </div>
+
+                <div class="input-group">
+                    <label>Address *</label>
+                    <textarea rows="4" id="address" placeholder="Enter your street address"></textarea>
+                    <div class="error-text" id="addressError"></div>
+                </div>
+
+                <div class="input-group">
+                    <label>Postal Code *</label>
+                    <input type="text" id="postalCode" placeholder="Enter postal code">
+                    <div class="error-text" id="postalCodeError"></div>
+                </div>
+
+            </div>
+
+            <div class="section">
+
+                <h2>Delivery Method</h2>
+
+                <div class="radio-group">
+
+                    <label>
+                        <input type="radio" name="delivery" value="5" checked onchange="updateCalculations()">
+                        Standard Delivery (3-5 Days) - $5
+                    </label>
+
+                    <label>
+                        <input type="radio" name="delivery" value="10" onchange="updateCalculations()">
+                        Express Delivery (1-2 Days) - $10
+                    </label>
+
+                </div>
+
+            </div>
+
+            <div class="section">
+
+                <h2>Payment Method *</h2>
+
+                <div class="radio-group">
+
+                    <label>
+                        <input type="radio" name="payment" value="cod" checked>
+                        Cash On Delivery
+                    </label>
+
+                    <label>
+                        <input type="radio" name="payment" value="aba">
+                        ABA Bank
+                    </label>
+
+                    <label>
+                        <input type="radio" name="payment" value="acleda">
+                        ACLEDA Bank
+                    </label>
+
+                    <label>
+                        <input type="radio" name="payment" value="credit">
+                        Credit Card
+                    </label>
+
+                    <label>
+                        <input type="radio" name="payment" value="wing">
+                        Wing
+                    </label>
+
+                </div>
+                <div class="error-text" id="paymentError"></div>
+
+            </div>
+
+            <div class="section">
+
+                <h2>Order Notes</h2>
+
+                <textarea rows="4" id="notes" placeholder="Leave package at security desk"></textarea>
+
+            </div>
+
+        </div>
+
+        <div class="checkout-right">
+
+            <h2>Order Summary</h2>
+
+            <div id="orderItems"></div>
+
+            <hr><br>
+
+            <div class="summary-line">
+                <span>Subtotal</span>
+                <span id="subtotal">$0</span>
+            </div>
+
+            <div class="summary-line">
+                <span>Shipping</span>
+                <span id="shipping">$5</span>
+            </div>
+
+            <div class="summary-line">
+                <span>Tax</span>
+                <span id="tax">$0</span>
+            </div>
+
+            <hr><br>
+
+            <div class="summary-line total">
+                <span>Total</span>
+                <span id="total">$0</span>
+            </div>
+
+            <button class="place-order" onclick="placeOrder()">
+                Place Order
+            </button>
+
+        </div>
+
+    </div>
+
+    <div class="success" id="successPopup">
+
+        <div class="success-box">
+
+            <h1>✅ Order Placed!</h1>
+
+            <p>Order #: GC2026001</p>
+
+            <p>Thank you for shopping with GlowCare.</p>
+
+            <p>A confirmation email will be sent shortly.</p>
+
+            <button onclick="closeSuccess()">
+                Continue Shopping
+            </button>
+
+        </div>
+
+    </div>
+
+    <script src="auth.js"></script>
+    <script>
+        // Tax rates by country
+        const TAX_RATES = {
+            'Cambodia': 0,
+            'Thailand': 0.07,
+            'Vietnam': 0.05
+        };
+
+        // Form field mappings
+        const formFields = {
+            fullName: 'fullNameError',
+            email: 'emailError',
+            phone: 'phoneError',
+            country: 'countryError',
+            city: 'cityError',
+            address: 'addressError',
+            postalCode: 'postalCodeError'
+        };
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            checkAuthStatus();
+            loadOrderSummary();
+            attachFormListeners();
+        });
+
+        // Check if user is logged in
+        function checkAuthStatus() {
+            const user = getCurrentUser();
+            const userGreeting = document.getElementById('userGreeting');
+            const logoutBtn = document.getElementById('logoutBtn');
+
+            if (user) {
+                userGreeting.textContent = `👋 Welcome, ${user.fullName}!`;
+                logoutBtn.style.display = 'block';
+                logoutBtn.onclick = handleLogout;
+                
+                // Auto-fill form
+                document.getElementById('fullName').value = user.fullName;
+                document.getElementById('email').value = user.email;
+            } else {
+                userGreeting.textContent = '👤 Guest User';
+            }
+        }
+
+        // Handle logout
+        function handleLogout() {
+            logoutUser();
+            alert('You have been logged out');
+            window.location.href = 'index.hmtl';
+        }
+
+        // Attach real-time validation listeners
+        function attachFormListeners() {
+            Object.keys(formFields).forEach(field => {
+                const element = document.getElementById(field);
+                if (element) {
+                    element.addEventListener('input', function() {
+                        clearError(field);
+                    });
+                    element.addEventListener('change', function() {
+                        clearError(field);
+                    });
+                }
+            });
+        }
+
+        // Clear error message
+        function clearError(fieldName) {
+            const errorId = formFields[fieldName];
+            const element = document.getElementById(fieldName);
+            if (element) {
+                element.classList.remove('error');
+            }
+            const errorEl = document.getElementById(errorId);
+            if (errorEl) {
+                errorEl.classList.remove('show');
+            }
+        }
+
+        // Show error message
+        function showError(fieldName, message) {
+            const errorId = formFields[fieldName];
+            const element = document.getElementById(fieldName);
+            const errorEl = document.getElementById(errorId);
+            
+            if (element) element.classList.add('error');
+            if (errorEl) {
+                errorEl.textContent = message;
+                errorEl.classList.add('show');
+            }
+        }
+
+        // Validate form
+        function validateForm() {
+            let isValid = true;
+
+            // Full Name
+            const fullName = document.getElementById('fullName').value.trim();
+            if (!fullName) {
+                showError('fullName', 'Full name is required');
+                isValid = false;
+            } else if (fullName.length < 2) {
+                showError('fullName', 'Full name must be at least 2 characters');
+                isValid = false;
+            }
+
+            // Email
+            const email = document.getElementById('email').value.trim();
+            if (!email) {
+                showError('email', 'Email is required');
+                isValid = false;
+            } else if (!validateEmail(email)) {
+                showError('email', 'Invalid email format');
+                isValid = false;
+            }
+
+            // Phone
+            const phone = document.getElementById('phone').value.trim();
+            if (!phone) {
+                showError('phone', 'Phone number is required');
+                isValid = false;
+            } else if (!validatePhone(phone)) {
+                showError('phone', 'Invalid phone number (7-15 digits)');
+                isValid = false;
+            }
+
+            // Country
+            const country = document.getElementById('country').value;
+            if (!country) {
+                showError('country', 'Please select a country');
+                isValid = false;
+            }
+
+            // City
+            const city = document.getElementById('city').value.trim();
+            if (!city) {
+                showError('city', 'City is required');
+                isValid = false;
+            }
+
+            // Address
+            const address = document.getElementById('address').value.trim();
+            if (!address) {
+                showError('address', 'Address is required');
+                isValid = false;
+            } else if (address.length < 5) {
+                showError('address', 'Address must be at least 5 characters');
+                isValid = false;
+            }
+
+            // Postal Code
+            const postalCode = document.getElementById('postalCode').value.trim();
+            if (!postalCode) {
+                showError('postalCode', 'Postal code is required');
+                isValid = false;
+            }
+
+            // Payment method
+            const paymentSelected = document.querySelector('input[name="payment"]:checked');
+            if (!paymentSelected) {
+                document.getElementById('paymentError').textContent = 'Please select a payment method';
+                document.getElementById('paymentError').classList.add('show');
+                isValid = false;
+            } else {
+                document.getElementById('paymentError').classList.remove('show');
+            }
+
+            return isValid;
+        }
+
+        // Update calculations when delivery method changes
+        function updateCalculations() {
+            const subtotal = parseFloat(document.getElementById('subtotal').textContent.replace('$', '')) || 0;
+            const shipping = parseFloat(document.querySelector('input[name="delivery"]:checked').value) || 5;
+            const country = document.getElementById('country').value;
+            const taxRate = TAX_RATES[country] || 0;
+            const tax = subtotal * taxRate;
+            const total = subtotal + shipping + tax;
+
+            document.getElementById('shipping').textContent = '$' + shipping.toFixed(2);
+            document.getElementById('tax').textContent = '$' + tax.toFixed(2);
+            document.getElementById('total').textContent = '$' + total.toFixed(2);
+        }
+
+        // Update tax when country changes
+        function updateTax() {
+            updateCalculations();
+        }
+
+        function placeOrder() {
+            if (!validateForm()) {
+                alert('Please fix the errors above before placing your order');
+                return;
+            }
+
+            const formData = {
+                fullName: document.getElementById('fullName').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                country: document.getElementById('country').value,
+                city: document.getElementById('city').value,
+                address: document.getElementById('address').value,
+                postalCode: document.getElementById('postalCode').value,
+                deliveryMethod: document.querySelector('input[name="delivery"]:checked').value,
+                paymentMethod: document.querySelector('input[name="payment"]:checked').value,
+                notes: document.getElementById('notes').value,
+                total: document.getElementById('total').textContent,
+                orderDate: new Date().toISOString()
+            };
+
+            // Store order in localStorage
+            const orders = JSON.parse(localStorage.getItem('orders')) || [];
+            const orderNumber = 'GC' + new Date().getFullYear() + String(orders.length + 1).padStart(5, '0');
+            
+            formData.orderNumber = orderNumber;
+            orders.push(formData);
+            localStorage.setItem('orders', JSON.stringify(orders));
+
+            // Clear cart
+            localStorage.removeItem('cart');
+
+            // Show success popup
+            document.getElementById('successPopup').style.display = 'flex';
+            document.querySelector('.success-box p:nth-child(2)').textContent = 'Order #: ' + orderNumber;
+        }
+
+        function closeSuccess() {
+            document.getElementById('successPopup').style.display = 'none';
+            window.location.href = 'main.html';
+        }
+
+        function loadOrderSummary() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const orderItems = document.getElementById('orderItems');
+
+            let subtotal = 0;
+
+            orderItems.innerHTML = '';
+
+            if (cart.length === 0) {
+                orderItems.innerHTML = '<p style="color: #999;">Your cart is empty</p>';
+            } else {
+                cart.forEach(item => {
+                    const itemTotal = item.price * item.quantity;
+                    subtotal += itemTotal;
+
+                    orderItems.innerHTML += `
+                <div class="order-item">
+                    <span>${item.title} x ${item.quantity}</span>
+                    <span>$${itemTotal.toFixed(2)}</span>
+                </div>
+            `;
+                });
+            }
+
+            const shipping = 5;
+            const country = document.getElementById('country').value || 'Cambodia';
+            const tax = subtotal * (TAX_RATES[country] || 0);
+            const total = subtotal + shipping + tax;
+
+            document.getElementById('subtotal').innerText = '$' + subtotal.toFixed(2);
+            document.getElementById('shipping').innerText = '$' + shipping.toFixed(2);
+            document.getElementById('tax').innerText = '$' + tax.toFixed(2);
+            document.getElementById('total').innerText = '$' + total.toFixed(2);
+        }
+    </script>
+
+</body>
+
+</html>

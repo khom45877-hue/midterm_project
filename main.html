@@ -1,0 +1,1463 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GlowCare Skincare</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: #fffaf6;
+      color: #222;
+      overflow-x: hidden;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Navbar */
+
+    nav {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 8%;
+      background: white;
+      position: fixed;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .logo {
+      font-size: 30px;
+      font-weight: 700;
+      color: #ff7f50;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 35px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: #ff7f50;
+    }
+
+    .nav-btn {
+      padding: 12px 24px;
+      border: none;
+      border-radius: 50px;
+      background: #ff7f50;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .nav-btn:hover {
+      transform: scale(1.05);
+    }
+
+    /* Hero Section */
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 120px 8%;
+      background: linear-gradient(to right, #fffaf6, #ffe7db);
+    }
+
+    .hero-text {
+      width: 50%;
+    }
+
+    .hero-text h1 {
+      font-size: 70px;
+      line-height: 1.1;
+      margin-bottom: 25px;
+    }
+
+    .hero-text span {
+      color: #ff7f50;
+    }
+
+    .hero-text p {
+      color: #666;
+      font-size: 18px;
+      line-height: 1.8;
+      margin-bottom: 35px;
+      width: 90%;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 20px;
+    }
+
+    .btn {
+      padding: 15px 30px;
+      border: none;
+      border-radius: 50px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .primary {
+      background: #ff7f50;
+      color: white;
+    }
+
+    .secondary {
+      background: white;
+      border: 1px solid #ddd;
+      color: #333;
+    }
+
+    .btn:hover {
+      transform: translateY(-5px);
+    }
+
+    .hero-image {
+      width: 45%;
+      display: flex;
+      justify-content: center;
+    }
+
+    .hero-image img {
+      width: 400px;
+      border-radius: 30px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Products */
+
+    .products {
+      padding: 100px 8%;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 70px;
+    }
+
+    .section-title h2 {
+      font-size: 50px;
+      margin-bottom: 15px;
+    }
+
+    .section-title p {
+      color: #777;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 30px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      transition: 0.4s;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+    }
+
+    .card img {
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+    }
+
+    .card-content {
+      padding: 25px;
+    }
+
+    .card-content h3 {
+      margin-bottom: 10px;
+      font-size: 24px;
+    }
+
+    .card-content p {
+      color: #666;
+      font-size: 14px;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .price {
+      font-size: 22px;
+      font-weight: 700;
+      color: #ff7f50;
+    }
+
+    .buy-btn {
+      padding: 10px 22px;
+      border: none;
+      border-radius: 50px;
+      background: #ff7f50;
+      color: white;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    /* Banner */
+
+    .banner {
+      margin: 100px 8%;
+      padding: 70px;
+      border-radius: 40px;
+      background: #ff7f50;
+      color: white;
+      text-align: center;
+    }
+
+    .banner h2 {
+      font-size: 55px;
+      margin-bottom: 20px;
+    }
+
+    .banner p {
+      max-width: 700px;
+      margin: auto;
+      line-height: 1.8;
+      margin-bottom: 30px;
+    }
+
+    .banner button {
+      padding: 15px 35px;
+      border: none;
+      border-radius: 50px;
+      background: white;
+      color: #ff7f50;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    /* Footer */
+
+    footer {
+      padding: 40px;
+      text-align: center;
+      color: #777;
+    }
+
+    /* Responsive */
+
+    @media(max-width:1024px) {
+      nav {
+        padding: 15px 5%;
+      }
+
+      nav ul {
+        gap: 20px;
+      }
+
+      .hero {
+        padding: 100px 5%;
+      }
+
+      .products {
+        padding: 80px 5%;
+      }
+
+      .banner {
+        margin: 80px 5%;
+        padding: 50px;
+      }
+
+      .section-title h2 {
+        font-size: 40px;
+      }
+
+      .product-grid {
+        gap: 20px;
+      }
+    }
+
+    @media(max-width:950px) {
+
+      nav ul {
+        display: none;
+      }
+
+      .hero {
+        flex-direction: column;
+        text-align: center;
+        gap: 60px;
+        padding: 100px 5%;
+      }
+
+      .hero-text {
+        width: 100%;
+      }
+
+      .hero-text h1 {
+        font-size: 50px;
+      }
+
+      .hero-text p {
+        width: 100%;
+      }
+
+      .hero-buttons {
+        justify-content: center;
+      }
+
+      .hero-image {
+        width: 100%;
+      }
+
+      .hero-image img {
+        width: 320px;
+      }
+
+      .banner h2 {
+        font-size: 38px;
+      }
+
+    }
+
+    @media(max-width:768px) {
+      nav {
+        padding: 12px 4%;
+      }
+
+      .logo {
+        font-size: 24px;
+      }
+
+      .nav-btn {
+        padding: 8px 15px;
+        font-size: 12px;
+      }
+
+      .hero {
+        padding: 80px 4%;
+        gap: 40px;
+      }
+
+      .hero-text h1 {
+        font-size: 36px;
+        margin-bottom: 20px;
+      }
+
+      .hero-text p {
+        font-size: 15px;
+        margin-bottom: 25px;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .btn {
+        padding: 12px 25px;
+        font-size: 14px;
+        width: 100%;
+      }
+
+      .hero-image img {
+        width: 280px;
+        border-radius: 20px;
+      }
+
+      .products {
+        padding: 60px 4%;
+      }
+
+      .section-title {
+        margin-bottom: 40px;
+      }
+
+      .section-title h2 {
+        font-size: 32px;
+      }
+
+      .product-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 15px;
+      }
+
+      .card {
+        border-radius: 20px;
+      }
+
+      .card img {
+        height: 250px;
+      }
+
+      .card-content {
+        padding: 18px;
+      }
+
+      .card-content h3 {
+        font-size: 18px;
+        margin-bottom: 8px;
+      }
+
+      .banner {
+        margin: 60px 4%;
+        padding: 40px 20px;
+        border-radius: 25px;
+      }
+
+      .banner h2 {
+        font-size: 28px;
+      }
+
+      .banner p {
+        font-size: 14px;
+        margin-bottom: 20px;
+      }
+
+      footer {
+        padding: 30px 20px;
+        font-size: 13px;
+      }
+    }
+
+    @media(max-width:480px) {
+      nav {
+        padding: 10px 3%;
+      }
+
+      .logo {
+        font-size: 20px;
+      }
+
+      .nav-btn {
+        padding: 8px 12px;
+        font-size: 11px;
+      }
+
+      .hero {
+        padding: 70px 3%;
+        gap: 30px;
+        min-height: auto;
+      }
+
+      .hero-text h1 {
+        font-size: 28px;
+        line-height: 1.2;
+      }
+
+      .hero-text p {
+        font-size: 13px;
+        line-height: 1.6;
+      }
+
+      .btn {
+        padding: 10px 20px;
+        font-size: 13px;
+        border-radius: 8px;
+      }
+
+      .hero-image img {
+        width: 100%;
+        max-width: 250px;
+      }
+
+      .products {
+        padding: 50px 3%;
+      }
+
+      .section-title h2 {
+        font-size: 24px;
+        margin-bottom: 30px;
+      }
+
+      .section-title p {
+        font-size: 13px;
+      }
+
+      .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+      }
+
+      .card {
+        border-radius: 15px;
+      }
+
+      .card img {
+        height: 180px;
+      }
+
+      .card-content {
+        padding: 12px;
+      }
+
+      .card-content h3 {
+        font-size: 14px;
+        margin-bottom: 6px;
+      }
+
+      .card-content p {
+        font-size: 12px;
+      }
+
+      .price {
+        font-size: 16px;
+      }
+
+      .buy-btn {
+        padding: 8px 16px;
+        font-size: 12px;
+      }
+
+      .banner {
+        margin: 40px 3%;
+        padding: 25px 15px;
+        border-radius: 15px;
+      }
+
+      .banner h2 {
+        font-size: 20px;
+        margin-bottom: 12px;
+      }
+
+      .banner p {
+        font-size: 12px;
+        margin-bottom: 15px;
+      }
+
+      .banner button {
+        padding: 10px 20px;
+        font-size: 12px;
+      }
+
+      footer {
+        padding: 20px 3%;
+        font-size: 12px;
+      }
+    }
+
+    @media(max-width:360px) {
+      .hero-text h1 {
+        font-size: 24px;
+      }
+
+      .product-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .btn {
+        width: 100%;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="minderm.css">
+</head>
+
+<body>
+
+  <!-- Navbar -->
+
+  <nav>
+
+    <div class="logo">GlowCare</div>
+
+    <ul>
+       <li><a href="#home">Home</a></li>
+        <li><a href="#products">Products</a></li>
+        <li><a href="#skincare">Skincare</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+
+    <div style="display:flex; gap:10px; align-items:center;">
+
+      <button class="nav-btn" onclick="openCart()">   
+        🛒 Cart (<span id="cartCount">0</span>)
+      </button>                                                   
+
+      <button class="nav-btn" onclick="viewCart()">   
+        View Cart
+      </button>
+
+      <span id="userInfo" style="color:#ff7f50; font-weight:600; padding:0 10px; border-right:1px solid #ddd;"></span>
+
+      <button class="nav-btn" id="logoutBtn" onclick="handleLogout()" style="display:none; background:#ff4d4d;">   
+        🚪 Logout
+      </button>                                               
+
+</div>
+    
+  </nav>
+
+  <!-- Hero Section -->
+  
+  <section class="hero" id="home">
+
+    <div class="hero-text">
+
+      <h1>
+        Healthy Skin Starts With <span>Daily Care</span>
+      </h1>
+
+      <p>
+        Discover premium skincare products including sunscreen,
+        moisturizer, serum, and facial cleanser for glowing skin.
+      </p>
+
+      <div class="hero-buttons">
+        <button class="btn primary">Explore Products</button>
+        <button class="btn secondary">Learn More</button>
+      </div>
+
+    </div>
+
+    <div class="hero-image">
+      <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?q=80&w=1000&auto=format&fit=crop" alt="">
+    </div>
+    
+  </section>
+  
+
+
+  
+
+
+
+
+ 
+  
+
+  <!-- Products -->
+
+  <section class="products" id="products">
+
+    <div class="section-title">
+      <h2>Popular Skincare</h2>
+      <p>Best skincare products for healthy and glowing skin.</p>
+    </div>
+    <div class="search-box">
+    <input
+        type="text"
+        id="search"
+        placeholder="🔍 Search products...">
+</div>
+
+    <div class="product-grid">
+
+      <!-- Product 1 -->
+
+      <div class="card">
+
+        <img src="image_for_midterm/issentry.webp" alt="">
+
+        <div class="card-content">
+
+          <h3>SPF 50 Sunscreen</h3>
+
+          <p>
+            Protect your skin from UV rays with lightweight sunscreen.
+          </p>
+
+          <div class="bottom">
+            <div class="price">$24</div>
+            <button class="buy-btn" onclick="openModal(
+                  'SPF 50+ Daily Sunscreen',
+                  '$24',
+                  '20%',
+                  '4.9',
+                  '2450',
+                  'image_for_midterm/issentry.webp',
+                  'SPF 50+ PA++++',
+                  '100ml',
+                  'All Skin Types'
+                  )">
+              Buy Now
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Product 2 -->
+
+      <div class="card">
+
+        <img src="image_for_midterm/centllaa.webp" alt="">
+
+        <div class="card-content">
+
+          <h3>Hydrating Serum</h3>
+
+          <p>
+            Deep hydration serum with vitamin C for glowing skin.
+          </p>
+
+          <div class="bottom">
+            <div class="price">$35</div>
+            <button class="buy-btn"
+              onclick="openModal(
+              'SPF 50+ Daily Sunscreen',
+              '$35',
+              '50%',
+              '3.5',
+              '2450',
+              'image_for_midterm/centllaa.webp',
+              'SPF 50+ PA++++',
+              '100ml',
+              'All Skin Types'
+              )">
+              Buy Now
+              </button>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Product 3 -->
+
+      <div class="card">
+
+        <img src="image_for_midterm/calming.webp" alt="">
+
+        <div class="card-content">
+
+          <h3>Daily Moisturizer</h3>
+
+          <p>
+            Smooth moisturizing cream for soft and healthy skin.
+          </p>
+
+          <div class="bottom">
+            <div class="price">$28</div>
+            <button class="buy-btn"
+              onclick="openModal(
+              'SPF 50+ Daily Sunscreen',
+              '$28',
+              '25%',
+              '3.4',
+              '2450',
+              'image_for_midterm/calming.webp',
+              'SPF 50+ PA++++',
+              '100ml',
+              'All Skin Types'
+              )">
+              Buy Now
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+      <!-- Product 4 -->
+
+      <div class="card">
+
+        <img src="image_for_midterm/torriden.jpg" alt="">
+
+        <div class="card-content">
+
+          <h3>Face Cleanser</h3>
+
+          <p>
+            Gentle facial cleanser that removes dirt and keeps skin fresh.
+          </p>
+
+          <div class="bottom">
+            <div class="price">$18</div>
+            <button class="buy-btn"
+              onclick="openModal(
+              'SPF 50+ Daily Sunscreen',
+              '$18',
+              '80%',
+              '4.9',
+              '2450',
+              'image_for_midterm/torriden.jpg',
+              'SPF 50+ PA++++',
+              '100ml',
+              'All Skin Types'
+              )">
+              Buy Now
+              </button>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Product 5 -->
+
+      <div class="card">
+
+        <img src="image_for_midterm/cutem.jpg" alt="">
+
+        <div class="card-content">
+
+          <h3>Night Cream</h3>
+
+          <p>
+            Nourishing night cream for smooth and glowing skin overnight.
+          </p>
+
+          <div class="bottom">
+            <div class="price">$32</div>
+            <button class="buy-btn"
+              onclick="openModal(
+              'SPF 50+ Daily Sunscreen',
+              '$32',
+              '10%',
+              '4.9',
+              '2450',
+              'image_for_midterm/cutem.jpg',
+              'SPF 50+ PA++++',
+              '100ml',
+              'All Skin Types'
+              )">
+              Buy Now
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Product 6 -->
+
+      <div class="card">
+
+        <img src="image_for_midterm/medi.jpg" alt="">
+
+        <div class="card-content">
+
+          <h3>Vitamin C Toner</h3>
+
+          <p>
+            Brightening toner enriched with vitamin C for radiant skin.
+          </p>
+
+          <div class="bottom">
+            <div class="price">$26</div>
+            <button class="buy-btn"
+              onclick="openModal(
+              'SPF 50+ Daily Sunscreen',
+              '$25',
+              '1.5%',
+              '2.9',
+              '2450',
+              'image_for_midterm/medi.jpg',
+              'SPF 50+ PA++++',
+              '100ml',
+              'All Skin Types'
+              )">
+              Buy Now
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Product 7 -->
+
+      <div class="card">
+
+        <img src="image_for_midterm/jms.jpg" alt="">
+
+        <div class="card-content">
+
+          <h3>Aloe Vera Gel</h3>
+
+          <p>
+            Cooling aloe vera gel that hydrates and refreshes your skin.
+          </p>
+
+          <div class="bottom">
+            <div class="price">$20</div>
+            <button class="buy-btn"
+              onclick="openModal(
+              'SPF 50+ Daily Sunscreen',
+              '$20',
+              '70%',
+              '4.9',
+              '2450',
+              'image_for_midterm/jms.jpg',
+              'SPF 50+ PA++++',
+              '100ml',
+              'All Skin Types'
+              )">
+              Buy Now
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+ <!-- Skincare Tips -->
+  <section class="skincare" id="skincare">
+
+    <div class="section-title">
+        <h2>Skincare Tips</h2>
+        <p>Simple routines for healthy and glowing skin.</p>
+    </div>
+
+    <div class="tips-container">
+
+        <div class="tip-card">
+            <h3>🌞 Morning Routine</h3>
+
+            <ul>
+                <li>Cleanse your face</li>
+                <li>Apply Vitamin C Serum</li>
+                <li>Use Moisturizer</li>
+                <li>Apply SPF 50 Sunscreen</li>
+            </ul>
+
+        </div>
+
+        <div class="tip-card">
+            <h3>🌙 Night Routine</h3>
+
+            <ul>
+                <li>Remove makeup</li>
+                <li>Wash your face</li>
+                <li>Apply Serum</li>
+                <li>Use Night Cream</li>
+            </ul>
+
+        </div>
+
+        <div class="tip-card">
+            <h3>☀️ Sunscreen Benefits</h3>
+
+            <ul>
+                <li>Protects against UV rays</li>
+                <li>Prevents sunburn</li>
+                <li>Reduces skin aging</li>
+                <li>Helps maintain even skin tone</li>
+            </ul>
+
+        </div>
+
+    </div>
+
+</section>
+
+  <!-- Banner -->
+
+  <section class="banner">
+
+    <h2>Glow Naturally Everyday</h2>
+
+    <p>
+      Premium skincare products made with safe ingredients
+      for brighter, smoother, and healthier skin.
+    </p>
+
+    <button>Shop Collection</button>
+
+  </section>
+
+  <!-- Contact -->
+  <section class="contact" id="contact">
+
+    <div class="section-title">
+        <h2>Contact Us</h2>
+        <p>We would love to hear from you.</p>
+    </div>
+
+    <div class="contact-container">
+
+        <div class="contact-info">
+
+            <h3>Get In Touch</h3>
+
+            <p>📞 Phone: +855 12 345 678</p>
+
+            <p>📧 Email: glowcare@gmail.com</p>
+
+            <p>📍 Phnom Penh, Cambodia</p>
+
+            <div class="social-links">
+
+                <a href="#">Facebook</a>
+
+                <a href="#">Instagram</a>
+
+                <a href="#">TikTok</a>
+
+            </div>
+
+        </div>
+
+        <form class="contact-form">
+
+            <input type="text"
+            placeholder="Your Name"
+            required>
+
+            <input type="email"
+            placeholder="Your Email"
+            required>
+
+            <textarea
+            rows="5"
+            placeholder="Your Message"
+            required></textarea>
+
+            <button type="submit">
+                Send Message
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+  <!-- Footer -->
+
+  <footer>
+    © 2026 GlowCare Skincare • Modern Website UI Design
+  </footer>
+
+
+
+  <!-- Product Details Modal -->
+
+  <div class="product-modal" id="productModal">
+
+    <div class="product-content">
+
+      <span class="close-btn" onclick="closeModal()">&times;</span>
+
+      <div class="product-layout">
+
+        <div class="left-side">
+
+          <img id="productImage" src="">
+
+        </div>
+
+        <div class="right-side">
+
+          <h2 id="productTitle"></h2>
+
+          <div class="rating">
+            ⭐ <span id="productRating"></span>
+            (<span id="productReviews"></span> Reviews)
+          </div>
+
+          <div class="price-box">
+
+            <h1 id="productPrice"></h1>
+
+            <span class="discount" id="productDiscount"></span>
+
+          </div>
+
+          <div class="info-card">
+
+            <p><strong>SPF:</strong> <span id="productSpf"></span></p>
+
+            <p><strong>Size:</strong> <span id="productSize"></span></p>
+
+            <p><strong>Skin Type:</strong> <span id="productSkin"></span></p>
+
+          </div>
+
+          <h3>Benefits</h3>
+
+          <ul>
+            <li>✓ UV Protection</li>
+            <li>✓ Water Resistant</li>
+            <li>✓ No White Cast</li>
+            <li>✓ Lightweight Formula</li>
+            <li>✓ Hydrating Finish</li>
+          </ul>
+
+          <div class="quantity-box">
+
+            <button onclick="minusQty()">-</button>
+
+            <input type="text" value="1" id="qty">
+
+            <button onclick="plusQty()">+</button>
+
+          </div>
+
+          <div class="action-buttons">
+
+            <button class="cart-btn" onclick="addToCart()">
+              Add To Cart
+            </button>
+
+            <button class="buy-now-btn">
+              Buy Now
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+  <div id="message"></div>
+
+  <!-- Cart Drawer -->
+
+<div class="cart-drawer" id="cartDrawer">
+
+  <div class="cart-header">
+
+    <h2>Shopping Cart</h2>
+
+    <span onclick="closeCart()">&times;</span>
+
+  </div>
+
+  <div id="cartItems"></div>
+
+  <div class="cart-footer">
+
+    <h3>
+      Total: $<span id="cartTotal">0</span>
+    </h3>
+    <a href="checkout.html">
+      <button class="checkout-btn" >
+        Checkout
+      </button>
+    </a>
+      
+
+  </div>
+
+</div>
+
+  
+  
+
+  <script src="auth.js"></script>
+  <script>
+
+    function openModal(
+      title,
+      price,
+      discount,
+      rating,
+      reviews,
+      image,
+      spf,
+      size,
+      skin
+    ) {
+
+      document.getElementById("productTitle").innerText = title;
+      document.getElementById("productPrice").innerText = price;
+      document.getElementById("productDiscount").innerText = discount + " OFF";
+      document.getElementById("productRating").innerText = rating;
+      document.getElementById("productReviews").innerText = reviews;
+      document.getElementById("productImage").src = image;
+      document.getElementById("productSpf").innerText = spf;
+      document.getElementById("productSize").innerText = size;
+      document.getElementById("productSkin").innerText = skin;
+
+      document.getElementById("productModal").style.display = "flex";
+    }
+
+    function closeModal() {
+      document.getElementById("productModal").style.display = "none";
+    }
+
+    function plusQty() {
+      let qty = document.getElementById("qty");
+      qty.value = parseInt(qty.value) + 1;
+    }
+
+    function minusQty() {
+      let qty = document.getElementById("qty");
+
+      if (parseInt(qty.value) > 1) {
+        qty.value = parseInt(qty.value) - 1;
+      }
+    }
+    
+
+    let cart = [];
+
+function addToCart(){
+
+  const product = {
+    title:
+      document.getElementById("productTitle").innerText,
+
+    price:
+      parseFloat(
+        document.getElementById("productPrice")
+        .innerText.replace("$","")
+      ),
+
+    image:
+      document.getElementById("productImage").src,
+
+    quantity:
+      parseInt(
+        document.getElementById("qty").value
+      )
+  };
+
+  cart.push(product);
+
+  updateCartCount();
+
+  renderCart();
+
+  localStorage.setItem(
+    "cart",
+    JSON.stringify(cart)
+  );
+
+}
+
+    function updateCartCount(){
+
+        document.getElementById("cartCount").innerText =
+        cart.length;
+    }
+
+    function showMessage(){
+
+        const msg =
+        document.getElementById("message");
+
+        msg.innerText =
+        "✅ Product Added To Cart";
+
+        msg.style.display = "block";
+
+        setTimeout(() => {
+
+            msg.style.display = "none";
+
+        }, 2000);
+    }
+
+    window.onload = () => {
+
+        const savedCart =
+        JSON.parse(localStorage.getItem("cart"));
+
+        if(savedCart){
+
+            cart = savedCart;
+
+            updateCartCount();
+        }
+    }
+
+
+  function openCart(){
+
+  document
+    .getElementById("cartDrawer")
+    .classList.add("active");
+}
+
+function closeCart(){
+
+  document
+    .getElementById("cartDrawer")
+    .classList.remove("active");
+}
+
+function updateCartCount(){
+
+  document.getElementById("cartCount")
+  .innerText = cart.length;
+}
+
+function renderCart(){
+
+  const container =
+  document.getElementById("cartItems");
+
+  let total = 0;
+
+  container.innerHTML = "";
+
+  cart.forEach((item,index)=>{
+
+    total += item.price * item.quantity;
+
+    container.innerHTML += `
+      <div class="cart-item">
+
+        <img src="${item.image}">
+
+        <div class="cart-info">
+
+          <h4>${item.title}</h4>
+
+          <p>$${item.price}</p>
+
+          <p>Qty: ${item.quantity}</p>
+
+          <button
+            class="remove-btn"
+            onclick="removeItem(${index})">
+
+            Remove
+
+          </button>
+
+        </div>
+
+      </div>
+    `;
+  });
+
+  document.getElementById("cartTotal")
+  .innerText = total.toFixed(2);
+}
+
+function removeItem(index){
+
+  cart.splice(index,1);
+
+  updateCartCount();
+
+  renderCart();
+
+  localStorage.setItem(
+    "cart",
+    JSON.stringify(cart)
+  );
+}
+
+window.onload = ()=>{
+
+  const savedCart =
+  JSON.parse(localStorage.getItem("cart"));
+
+  if(savedCart){
+
+    cart = savedCart;
+
+    updateCartCount();
+
+    renderCart();
+  }
+}
+
+    
+    function viewCart(){
+
+    if(cart.length === 0){
+        alert("Your cart is empty.");
+        return;
+    }
+
+    let items = "";
+
+    cart.forEach(item => {
+        items += `${item.title} x ${item.quantity}\n`;
+    });
+
+    alert(items);
+}
+
+
+document.getElementById("search").addEventListener("keyup", function () {
+
+    const value = this.value.toLowerCase();
+
+    document.querySelectorAll(".card").forEach(card => {
+
+        const title = card.querySelector("h3")
+                          .textContent
+                          .toLowerCase();
+
+        if(title.includes(value)){
+            card.style.opacity = "1";
+            card.style.transform = "scale(1)";
+            card.style.pointerEvents = "auto";
+        }else{
+            card.style.opacity = "0";
+            card.style.transform = "scale(0.9)";
+            card.style.pointerEvents = "none";
+        }
+
+    });
+
+});
+
+// Handle logout
+function handleLogout() {
+    logoutUser();
+    window.location.href = 'index.html';
+}
+
+// Initialize user info on page load
+window.addEventListener('load', function() {
+    const user = getCurrentUser();
+    const userInfoEl = document.getElementById('userInfo');
+    const logoutBtn = document.getElementById('logoutBtn');
+    
+    if (user) {
+        userInfoEl.textContent = `👤 ${user.fullName}`;
+        logoutBtn.style.display = 'block';
+    } else {
+        userInfoEl.textContent = '';
+        logoutBtn.style.display = 'none';
+    }
+});
+  </script>
+
+</body>
+
+</html>
